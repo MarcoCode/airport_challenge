@@ -1,14 +1,13 @@
 describe "Bonus Feature - " do 
   
  before do 
-    @tower = ControlTower.new
     @plane1 = Plane.new
     @plane2 = Plane.new
     @stansted = Airport.new "Stansted"
     @gatwick = Airport.new "Gatwick"
   end
   
-    it "takes-off and lands a number of planes" do
+    xit "takes-off and lands a number of planes" do
     @plane1.dock(@stansted)
     @plane2.dock(@stansted)
     allow(@stansted).to receive(:clear?) {true}
