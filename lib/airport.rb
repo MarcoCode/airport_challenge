@@ -1,3 +1,5 @@
+require 'weather'
+
 class Airport
   
   attr_reader :name, :planes, :capacity, :weather
@@ -7,7 +9,7 @@ class Airport
   def initialize(name, capacity=DEFAULT_CAPACITY)
     @name = name
     @capacity = capacity
-    @weather = :sunny
+    @weather = Weather.new
     @planes = []
   end
   
@@ -21,8 +23,8 @@ class Airport
   end
   
   def take_off(plane) 
-    return "#{plane.plane_id} is not in #{self.name}" unless @planes.include?(plane)
-    return "Cannot operate in #{airport.name}, stormy weather" unless clear?
+    return "#{plane.plane_id} is not in #{self.name}" unless docked?(plane)
+    return "Cannot operate in #{self.name}, stormy weather" unless clear?
     plane.flying = true
     self.planes.delete(plane)
     "737-1 took-off from #{self.name}"
@@ -30,6 +32,10 @@ class Airport
   
   
   private
+  
+  def docked?(plane)
+    @planes.include?(plane)
+  end
   
    def full?
      @planes.size == capacity
@@ -40,5 +46,4 @@ class Airport
    end
   
   
-
 end

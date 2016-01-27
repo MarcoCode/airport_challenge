@@ -10,7 +10,9 @@ describe Weather do
   let(:name) { "Heatrow" }
   let(:capacity) { 3 }
   
-  
+  it 'has a condition' do 
+    expect([:sunny, :stormy]).to include weather.condition?
+  end
   
   
 end

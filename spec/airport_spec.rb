@@ -39,9 +39,14 @@ end
       expect(airport.take_off(plane)).to eq "737-1 took-off from Stansted"     
     end
     
+    it "Does not let a plane take off in stormy weather" do
+    allow(airport).to receive(:clear?).and_return(false)
+    expect(airport.take_off(plane)).to eq "Cannot operate in Stansted, stormy weather"
+    end
+    
     it "Does not let a plane not in the airport take-off" do
       airport.planes.delete(plane)
-      expect(airport.take_off(plane)).to eq "737-6 is not in Stansted"
+      expect(airport.take_off(plane)).to eq "737-7 is not in Stansted"
     end
     
   end
