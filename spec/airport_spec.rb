@@ -15,8 +15,7 @@ describe Airport do
   it { is_expected.to respond_to(:take_off).with(1).argument }
   
   before(:each) do
-    truck = Truck.new
-    truck.dock(plane, airport)
+    plane.dock(airport)
   end
 
   it "has a default capacity" do

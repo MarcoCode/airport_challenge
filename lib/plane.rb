@@ -1,4 +1,5 @@
 require "./lib/airport.rb"
+require "./lib/truck.rb"
 
 class Plane
   
@@ -13,6 +14,8 @@ class Plane
     @@total_planes += 1
   end
   
- 
+  def dock(airport)
+    Truck.new.dock(self, airport)
+  end
   
 end
